@@ -1,4 +1,4 @@
-# Paper
+# Trabajo Final de Grado (undergraduate thesis)
 
 _Code for the Web Application Firewall we present in our undergraduate thesis._
 
@@ -38,3 +38,8 @@ _In Ubuntu using `pip` should just work fine_.
 - Nico Epp
 - Ralf Funk
 - Cristian Cappo (undergraduate thesis advisor)
+
+## See also
+   Check out the [paper](https://www.researchgate.net/publication/319490376_Anomaly-based_Web_Application_Firewall_using_HTTP-specific_features_and_One-Class_SVM)
+   we submitted to the ERRC 2017 conference in Santa Maria, Brazil
+   and the corresponding [code](https://github.com/nico-ralf-ii-fpuna/paper).
