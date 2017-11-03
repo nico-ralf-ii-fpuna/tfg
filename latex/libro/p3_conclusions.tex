@@ -1,0 +1,286 @@
+\renewcommand{\newCommandChapterTitle}{Conclusiones}
+\chapter{\newCommandChapterTitle}
+\markright{\hfill \thechapter. \newCommandChapterTitle}
+\label{chap:p3_conclusions}
+
+
+En este capítulo presentamos las conclusiones de nuestro trabajo.
+Primeramente damos un resumen general del contenido que fue presentado
+a lo largo de este trabajo, incluyendo el análisis de los resultados
+que obtuvimos en las pruebas realizadas con el detector \gls{acr3:name}.
+Después mostramos de qué forma hemos logrado alcanzar los objetivos que
+nos propusimos para esta investigación. Finalmente, concluimos este
+trabajo describiendo varios aspectos de nuestra implementación en los
+cuales pueden realizarse mejoras; estos aspectos podrían dar lugar a
+trabajos futuros.
+
+
+\section{Resumen de la investigación}
+
+En esta sección presentamos los aspectos más importantes que fueron
+descritos en cada uno de los capítulos anteriores, buscando brindar de
+esta forma un resumen de las ideas principales de este trabajo.
+
+En el \autoref{chap:p3_introduction} introducimos el tema de este trabajo.
+Describimos el área de estudio que rodea nuestra investigación, que abarca
+el área de \gls{acr3:ids} con detección de anomalías, características
+de los mensajes \gls{acr3:http} y también la herramienta \gls{acr3:ocsvm}
+del área de \gls{acr3:ml}. Luego mostramos la problemática que nos llevó
+a realizar este trabajo, argumentando que vulnerabilidades presentes en
+muchas aplicaciones web presentan un gran riesgo y se necesita mecanismos
+para protegerlos. Al final de ese capítulo presentamos los objetivos que
+nos hemos propuesto para este trabajo de investigación; estos objetivos
+se centran en la detección de mensajes \gls{acr3:http} anómalos mediante
+un \gls{acr3:waf} basado en detección de anomalías, utilizando clasificadores
+\gls{acr3:ocsvm}, con el fin de mitigar los riesgos existentes de ataques
+contra aplicaciones web a través de la Internet.
+
+En el \autoref{chap:p3_concepts_features} presentamos nuestros procesos
+de extracción de \textit{features}. Estos procesos se basan de gran manera
+en los aportes de los trabajos de Kruegel y Vigna, especialmente en la
+manera como aprovechan las características de mensajes \gls{acr3:http}
+para proponer sus modelos de anomalías. Luego explicamos los procesos que
+diseñamos, incluyendo el análisis de valores de parámetros que realizamos
+y cada uno de los \textit{features} que extraemos de esos valores para
+representar las características de los mensajes como vectores numéricos.
+Estos vectores pueden tener longitudes distintas según el grupo de método
+\gls{acr3:http} y \gls{acr3:url} al que pertenecen, ya que esto depende
+de la cantidad de parámetros de las peticiones.
+Las características analizadas de las peticiones son la distribución de
+caracteres, la entropía y la cantidad de caracteres. Se complementa esta
+extracción de \textit{features} con un proceso de escalamiento para reducir
+el impacto de los distintos rangos de números que pueden tener los diferentes
+\textit{features}.
+
+En el \autoref{chap:p3_concepts_ocsvm} describimos en detalle el
+clasificador \gls{acr3:ocsvm}, que constituye la parte central de nuestro
+\gls{acr3:waf}. Una de las ventajas de utilizar este clasificador es que
+no necesitamos peticiones anómalas para el entrenamiento, reduciendo así
+el impacto que tiene la aparición de nuevos tipos de ataques; solamente
+se vuelve a realizar el entrenamiento cuando haya cambios en las aplicaciones
+protegidas.
+Mostramos que se utiliza vectores de \textit{features} que representan
+a las peticiones de entrenamiento para trazar un hiperplano que separa
+este grupo de entrenamiento del origen. Posteriormente, en la fase de
+detección, se determina a qué lado del hiperplano pertenecen los vectores
+de las nuevas peticiones, para así determinar si corresponden a peticiones
+normales o anómalas.
+La selección de valores de los parámetros \gls{sim3:nui} y \gls{sim3:gammai}
+del clasificador se realizó de forma experimental para los conjuntos de
+datos utilizados y creemos que esto no variará mucho para conjuntos de
+datos diferentes.
+
+El \autoref{chap:p3_new_waf} detalla la implementación y funcionamiento
+de \gls{acr3:name} que fue construido en el marco de este trabajo.
+Describimos los detalles de la implementación, incluyendo los pasos
+intermedios de cada una de las dos fases, que son las fases de entrenamiento
+y detección. Se explicaron las particularidades de nuestra implementación,
+detallando también los componentes externos y librerías que utilizamos.
+El código fuente de la implementación está disponible en un repositorio
+público bajo la dirección \TheRepoUrl.
+
+El \autoref{chap:p3_results} presenta las pruebas realizadas con nuestra
+implementación y expone los resultados obtenidos en cada una de ellas.
+Utilizamos los conjuntos de datos \gls{acr3:csic} 2010 \citep{csic2010dataset}
+y \gls{acr3:csic} TORPEDA 2012 \citep{torpeda2012dataset}, que contienen
+peticiones \gls{acr3:http} hechas a una aplicación de comercio electrónico.
+Las pruebas experimentales analizaron tres características de \gls{acr3:name}:
+la eficacia de detección, el impacto en el tiempo de respuesta de las
+aplicaciones protegidas y el tiempo de entrenamiento.
+
+Analizando la primera de estas característica, la eficacia de detección
+de \gls{acr3:name}, logramos obtener un \gls{acr3:tpr} de \num{0.93},
+un \gls{acr3:fpr} de \num{0.03} y un F$_{1}$-\textit{score} de \num{0.95}.
+Estos son resultados promedios para los 18 grupos de peticiones que
+utilizamos de los conjuntos de datos.
+Empleamos el escalamiento de \textit{features} e incluimos el análisis
+de valores de parámetros en las peticiones, ya que utilizando estas dos
+estrategias obtuvimos los mejores resultados. Además, realizamos el
+entrenamiento con 1500 peticiones en cada grupo (cerca del 75\% de las
+muestras normales), atendiendo a que no haya anomalías en los datos de
+entrenamiento.
+Notamos que el \gls{acr3:tpr} promedio alcanzado de \num{0.93} es algo
+bajo; inspeccionando los grupos individuales descubrimos que la mayoría
+tiene un \gls{acr3:tpr} mayor o igual a \num{0.99}, pero cuatro grupos
+alcanzan solamente un \gls{acr3:tpr} alrededor de \num{0.72}. Estos cuatro
+grupos justamente son los que tienen la mayor cantidad de parámetros (y
+por lo tanto la mayor cantidad de \textit{features}), y esto podría indicar
+que nuestro \gls{acr3:waf} tiene dificultades con peticiones que tienen
+muchos parámetros.
+
+En la segunda característica analizada mediante las pruebas, tratamos
+de cuantificar el impacto que nuestro \gls{acr3:waf} podría tener sobre
+el tiempo de respuesta de las aplicaciones web que protege. A pesar de
+que nuestra implementación puede ser optimizada, logramos que el retraso
+adicional en el tiempo de repuesta sea despreciable comparado con la
+latencia promedio del tráfico de red en Internet, por lo que el trabajo
+de detección de nuestro \gls{acr3:waf} no afectaría de forma notable
+el tiempo de respuesta de las aplicaciones protegidas.
+
+En la tercera característica analizada mediante las pruebas, que trata
+del tiempo de entrenamiento de nuestro \gls{acr3:waf}, verificamos que
+esta duración depende de la cantidad de peticiones utilizadas para dicha
+fase de entrenamiento. Los números indican que se puede entrenar nuestra
+implementación con \num{100000} peticiones en alrededor de 12 minutos.
+Esta rapidez le provee mucha flexibilidad a los administradores del
+\gls{acr3:waf} para poder planificar los momentos de entrenamiento.
+Recordamos que el entrenamiento solamente es necesario después de realizar
+cambios en las aplicaciones protegidas, y la eficacia de detección del
+sistema no debería verse afectada por la aparición de nuevos ataques.
+
+Al final del \autoref{chap:p3_results} realizamos también una comparación
+de \gls{acr3:name} con propuestas de otros trabajos del área. Para poder
+comparar los resultados, nos enfocamos en aquellos que utilizan el mismo
+conjunto de datos que nosotros empleamos para las pruebas. Analizamos
+propuestas que utilizan distintas herramientas, como por ejemplo árboles
+de decisión, modelos estadísticos y también el mismo clasificador
+\gls{acr3:ocsvm}.
+
+
+\section{Alcance de los objetivos}
+
+En esta parte volvemos a presentar los objetivos que nos habíamos propuesto
+en el \autoref{chap:p3_introduction} y mostramos de qué manera logramos
+alcanzar los mismos a través del trabajo realizado a lo largo de esta
+investigación. Empezamos describiendo nuestros logros para los objetivos
+específicos, para después cerrar con el objetivo general.
+
+
+\subsection{Objetivos específicos}
+
+\begin{enumerate}
+    \item
+    Diseñar procesos de extracción de características (\textit{features})
+    específicamente para mensajes \gls{acr3:http}, basado en aportes de
+    otros investigadores de la literatura.
+
+    \begin{itemize}
+        \item
+        Partiendo de los trabajos de los autores Kruegel y Vigna, y
+        combinando sus aportes con trabajos de la literatura especializada,
+        se diseñó procesos de extracción de \textit{features} que pueden
+        representar características de los mensajes \gls{acr3:http}
+        mediante vectores de \textit{features} numéricos.
+        Estos procesos de extracción fueron descritos en el
+        \autoref{chap:p3_concepts_features}, mientras que en el
+        \autoref{chap:p3_new_waf} se mostraron los detalles de la
+        implementación de los mismos.
+        Las pruebas experimentales presentadas en el \autoref{chap:p3_results}
+        demuestran la utilidad de estos procesos diseñados para la tarea
+        de detección de anomalías en mensajes \gls{acr3:http}.
+    \end{itemize}
+
+    \item
+    Implementar un \gls{acr3:waf} basado en anomalías, utilizando los
+    procesos de extracción de \textit{features} diseñados junto con
+    clasificadores \gls{acr3:ocsvm}.
+
+    \begin{itemize}
+        \item
+        Se implementó un \gls{acr3:waf} sencillo, utilizando los procesos
+        de extracción de \textit{features} que fueron descritos en el
+        \autoref{chap:p3_concepts_features}, junto con los clasificadores
+        \gls{acr3:ocsvm} que fueron presentados en el
+        \autoref{chap:p3_concepts_ocsvm}.
+        Los detalles de implementación del \gls{acr3:name} fueron explicados
+        en el \autoref{chap:p3_new_waf}. Se incluyó la referencia al
+        repositorio público que contiene el código fuente del \gls{acr3:name}.
+    \end{itemize}
+
+    \item
+    Evaluar la eficacia del \gls{acr3:waf} implementado en cuanto a la
+    detección de mensajes \gls{acr3:http} anómalos.
+
+    \begin{itemize}
+        \item
+        Mediante las pruebas del \autoref{chap:p3_results} se mostró
+        que el \gls{acr3:name} es eficaz en la detección de mensajes
+        \gls{acr3:http} anómalos, considerando los conjuntos de datos
+        de prueba utilizados en este trabajo.
+    \end{itemize}
+
+    \item
+    Analizar la viabilidad de utilizar el \gls{acr3:waf} implementado
+    para detección de ataques en tiempo real.
+
+    \begin{itemize}
+        \item
+        Utilizando la implementación sencilla, con las pruebas del
+        \autoref{chap:p3_results} se mostró que el \gls{acr3:name} no
+        afectaría de forma notable el tiempo de respuesta de las
+        aplicaciones web que están siendo protegidas por el mismo,
+        posibilitando que pueda ser utilizado para detección de
+        ataques en tiempo real.
+    \end{itemize}
+\end{enumerate}
+
+
+\subsection{Objetivo general}
+
+\begin{itemize}
+    \item
+    Detectar mensajes \gls{acr3:http} anómalos entre aplicaciones web
+    y sus usuarios con el fin de mitigar los riesgos de ataques contra
+    dichas aplicaciones, utilizando un \gls{acr3:waf} basado en
+    clasificadores \gls{acr3:ocsvm}.
+
+    \begin{itemize}
+        \item
+        Se construyó un \gls{acr3:waf} que usa características
+        específicas de mensajes \gls{acr3:http} y clasificadores
+        \gls{acr3:ocsvm} para detectar mensajes anómalos.
+        \gls{acr3:name} puede ser colocado frente a múltiples
+        aplicaciones web con el fin de protegerlas contra posibles
+        ataques.
+        De esta forma, en nuestra opinión, se ha logrado cumplir
+        satisfactoriamente con todos los objetivos propuestos para
+        este trabajo.
+    \end{itemize}
+\end{itemize}
+
+
+\section{Ideas para trabajos futuros}
+
+A pesar de concluir exitosamente nuestra investigación, reconocemos que
+aún hay varios aspectos que pueden ser mejorados o extendidos. A continuación
+presentamos algunas de estas ideas que podrían dar lugar a trabajos futuros.
+
+\begin{itemize}
+    \item
+    Se podría realizar pruebas con \gls{acr3:name} utilizando otros
+    conjuntos de datos. Esto serviría para verificar y validar que nuestra
+    implementación no está atada solamente a los datos que utilizamos en
+    este trabajo.
+
+    \item
+    Nuestros resultados aún dejan lugar para mejoras, especialmente el
+    \gls{acr3:tpr} es un poco bajo para algunos casos. Se podría explorar
+    otras características de los mensajes \gls{acr3:http} para extender y
+    mejorar nuestros procesos de extracción de \textit{features}, analizando
+    el impacto que tiene cada característica en la detección.
+
+    \item
+    Actualmente nuestra implementación solamente considera los cuerpos
+    de peticiones que constan de pares de parámetros y valores estructurados
+    de la misma forma que el \textit{query string}. Se puede extender el
+    \gls{acr3:name} para incluir cuerpos de otros formatos, por ejemplo
+    datos binario, JSON, XML, entre otros.
+    Adicionalmente, se necesita encontrar o construir un conjunto de datos
+    de prueba que contenga ese tipo de peticiones con datos suficientemente
+    reales.
+
+    \item
+    \gls{acr3:name} solamente considera mensajes \gls{acr3:http} en la
+    versión 1.1 del protocolo. En la versión 2 de este protocolo, dichos
+    mensajes son enviados en formato binario \citep{belshe2015http2} % from section 1
+    y se podría incluir una extensión a nuestra implementación para poder
+    analizar también los mensajes \gls{acr3:http}/2.
+
+    \item
+    La selección de los valores para los parámetros \gls{sim3:nui} y
+    \gls{sim3:gammai} presenta un gran desafío y \gls{acr3:name} no
+    cuenta todavía con un método automático para esta búsqueda.
+    Se podría explorar métodos para realizar la selección óptima de
+    estos parámetros, para posteriormente incorporar también ese
+    mecanismo descubierto dentro de nuestra implementación.
+\end{itemize}

@@ -1,0 +1,100 @@
+% ==============================
+% Ejemplo de documento para el trabajo de grado de la Facultad Politecnica de la UNA
+% Esta basado en una plantilla de la Universidad de Cambrigde.
+% ==============================
+
+\documentclass[oneside,11pt]{thesis}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{titlesec}
+\newcommand{\HRule}{
+    \protect
+    \rule{\linewidth}{0.3mm}
+}
+\renewcommand{\spanishtablename}{Tabla}
+
+
+% cambiar numeración de figuras y tablas de 'x.y' a 'y'
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+
+% Definicion de glosarios para simbolos y acronimos
+\usepackage{datatool}
+\usepackage[nomain,nonumberlist,toc]{glossaries}
+\setglossarystyle{long4col}
+\newglossary[acr1]{acr2}{acr3}{acr4}{Lista de Acrónimos}
+\makeglossaries
+\input{p0_acronyms}
+
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            \textsc{\LARGE Universidad Nacional De Asunción}        \\[1.5cm]
+            \textsc{\LARGE Facultad Politécnica}                    \\[1.5cm]
+            \textsc{\Large Ingeniería en Informática}               \\[1.5cm]
+            \includegraphics[width=20mm]{images/Escudo_FPUNA.jpg}   \\[1.2cm]
+
+            \HRule                                                  \\[0.4cm]
+            {\bfseries
+                Propuesta de Trabajo Final de Grado
+            }                                                       \\[0.4cm]
+            {\bfseries
+                \textit{Web Application Firewall}
+                con detección de anomalías
+                usando características específicas de tráfico HTTP
+                y \textit{One-Class} SVM
+            }                                                       \\[0.4cm]
+            \HRule                                                  \\[1.0cm]
+
+            \begin{minipage}[t]{0.4\textwidth}
+                \begin{flushleft}
+                    \large
+                    \emph{Autores:}                                 \\[0.2cm]
+                    Nico Epp                                        \\
+                    {\small Año de ingreso: 2010 - CI: 3.184.199}   \\
+                    Ralf Funk                                       \\
+                    {\small Año de ingreso: 2011 - CI: 3.886.529}
+                \end{flushleft}
+            \end{minipage}
+            \begin{minipage}[t]{0.4\textwidth}
+                \begin{flushright}
+                    \large
+                    \emph{Tutor:}                                   \\[0.2cm]
+                    Msc. Cristian Cappo
+                \end{flushright}
+            \end{minipage}
+
+            \vfill
+
+            \textsc{\large San Lorenzo - Paraguay} \\
+            \textsc{\large Agosto - 2017}
+        \end{center}
+    \end{titlepage}
+
+    % set the number of sectioning levels that get number and appear in the contents
+    \setcounter{secnumdepth}{3}
+    \setcounter{tocdepth}{3}
+    \pagenumbering{roman}
+    \pagestyle{plain}   % no page headers
+
+    % do not print
+    %\newpage
+    %\printglossary[type=acr2]
+
+    \titleformat{\chapter}[display]{}{}{0pt}{}
+    \titlespacing*{\chapter}{0pt}{-50pt}{0pt}
+    \mainmatter     % starts chapter numbering
+    \include{p3_contenido}
+
+    \titleformat{\chapter}[display]{}{}{0pt}{\Large}
+    \titlespacing*{\chapter}{0pt}{-50pt}{20pt}
+    \backmatter     % stops chapter numbering
+    \renewcommand{\bibname}{Referencias}
+    \bibliography{p5_references}
+    \bibliographystyle{alpha}
+\end{document}

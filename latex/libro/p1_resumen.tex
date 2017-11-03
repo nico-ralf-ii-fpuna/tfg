@@ -1,0 +1,42 @@
+\begin{resumen}
+    Las vulnerabilidades en aplicaciones web presentan un gran riesgo, ya
+    que estas pueden ser explotadas por atacantes maliciosos a través
+    de Internet. Los \textit{Web Application Firewalls} (\gls{acr3:waf})
+    pueden ser colocados frente a estas aplicaciones para detectar
+    posibles ataques y de esta forma reducir estos riesgos.
+    En este trabajo presentamos \gls{acr3:name}, un \gls{acr3:waf} que
+    puede ser colocado frente a aplicaciones web para analizar los mensajes
+    \gls{acr3:http} entrantes, con el fin de detectar mensajes anómalos
+    que podrían contener ataques.
+    Nuestra implementación, hecha en el lenguage de programación
+    \textit{Python}, utiliza clasificadores \gls{acr3:ocsvm} para la
+    detección, junto con procesos de extracción de características
+    diseñados específicamente para mensajes \gls{acr3:http}.
+    \gls{acr3:name} es entrenado con mensajes que representan el uso
+    normal de las aplicaciones protegidas, y posteriormente, en la fase
+    de detección, puede detectar mensajes anómalos o ataques.
+    Usando esta estrategia de detección de anomalías, \gls{acr3:name}
+    solamente necesita ser entrenado cuando haya cambios en las
+    aplicaciones protegidas, por lo que la aparición de nuevos tipos de
+    ataques no requiere volver a entrenarlo.
+    Las pruebas realizadas para medir la eficacia de detección muestran
+    que \gls{acr3:name} alcanza un \gls{acr3:tpr} promedio de \num{0.93},
+    un \gls{acr3:fpr} promedio de \num{0.03} y un F$_{1}$-\textit{score}
+    promedio de \num{0.95} para los conjuntos de datos públicos que
+    utilizamos.
+    Las pruebas también evidencian que las tareas de detección de \gls{acr3:name}
+    no afectarían de forma notable el tiempo de respuesta de las aplicaciones
+    protegidas. Además, puede ser entrenado con \num{100000} mensajes
+    normales en unos pocos minutos.
+    Finalmente, el código fuente de \gls{acr3:name} está disponible en
+    un repositorio público bajo la dirección \TheRepoUrl, con la finalidad
+    de que otros puedan reproducir nuestros resultados y extender este
+    trabajo en futuras investigaciones.
+
+    \keywordsESP{
+        Sistemas de Detección de Intrusión (\gls{acr3:ids}),
+        Web Application Firewall (\gls{acr3:waf}),
+        ataques web,
+        detección de anomalías,
+        \gls{acr3:ocsvm}}
+\end{resumen}

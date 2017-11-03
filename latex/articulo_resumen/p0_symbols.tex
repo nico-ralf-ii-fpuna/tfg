@@ -1,0 +1,90 @@
+%
+% Lista de símbolos
+%
+
+\newglossaryentry{sim3:g}{
+    type=sim2,
+    name=$G$,
+    description={conjunto de grupos de peticiones HTTP agrupadas por
+        método y URL}
+}
+\newglossaryentry{sim3:gi}{
+    type=sim2,
+    name=$G_{i}$,
+    description={el grupo \textit{i} de peticiones HTTP con un mismo
+        método y una misma URL}
+}
+\newglossaryentry{sim3:qi}{
+    type=sim2,
+    name=$Q_{i}$,
+    description={lista de parámetros del \textit{query string} de las
+        peticiones HTTP del grupo $G_{i}$}
+}
+\newglossaryentry{sim3:bi}{
+    type=sim2,
+    name=$B_{i}$,
+    description={lista de parámetros del cuerpo de las peticiones HTTP
+        del grupo $G_{i}$}
+}
+\newglossaryentry{sim3:fi}{
+    type=sim2,
+    name=$F_{i}$,
+    description={conjunto de vectores de \textit{features} que representan
+        las peticiones HTTP del grupo $G_{i}$}
+}
+\newglossaryentry{sim3:fij}{
+    type=sim2,
+    name=$\vec{f_{ij}}$,
+    description={vector de \textit{features} que representa una petición
+        HTTP del grupo $G_{i}$}
+}
+\newglossaryentry{sim3:ni}{
+    type=sim2,
+    name=$n_{i}$,
+    description={cantidad de componentes de los vectores $\vec{f_{i}_{j}}$
+        del conjunto $F_{i}$}
+}
+\newglossaryentry{sim3:m}{
+    type=sim2,
+    name=$m$,
+    description={cantidad de \textit{features} extraídos por cada valor
+        analizado}
+}
+\newglossaryentry{sim3:mi}{
+    type=sim2,
+    name=$M_{i}$,
+    description={matriz de \textit{features} que representa las peticiones
+        HTTP del grupo $G_{i}$ utilizadas para entrenamiento}
+}
+\newglossaryentry{sim3:wi}{
+    type=sim2,
+    name=$\vec{w_{i}}$,
+    description={vector perpendicular al hiperplano del One-Class SVM
+        para el grupo $G_{i}$}
+}
+\newglossaryentry{sim3:rhoi}{
+    type=sim2,
+    name=$\rho_{i}$,
+    description={distancia al origen del hiperplano del One-Class SVM
+        para el grupo $G_{i}$}
+}
+\newglossaryentry{sim3:nui}{
+    type=sim2,
+    name=$\nu_{i}$,
+    description={parámetro del One-Class SVM que regula la fracción de
+        muestras situadas al mismo lado del hiperplano que el origen
+        para el grupo $G_{i}$}
+}
+\newglossaryentry{sim3:slacki}{
+    type=sim2,
+    name=$\xi_{i}$,
+    description={lista de valores de holgura para el One-Class SVM del
+        grupo $G_{i}$}
+}
+\newglossaryentry{sim3:gammai}{
+    type=sim2,
+    name=$\gamma_{i}$,
+    description={parámetro del \textit{kernel} RBF que regula la
+        dimensión de la región de influencia de cada muestra de
+        entrenamiento para el grupo $G_{i}$}
+}

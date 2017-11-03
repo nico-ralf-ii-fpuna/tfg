@@ -8,6 +8,7 @@
 import os
 import sys
 from implementation.tests import detection_efficacy, training_duration, waf_speed
+from latex import make_pdf_articulo_resumen, make_pdf_libro, make_pdf_propuesta
 
 
 AVAILABLE_COMMANDS = '''{}
@@ -19,6 +20,7 @@ Available commands are:
     test2 waf_with_det
     test2 source
     test3
+    make_pdf
 '''
 USAGE = AVAILABLE_COMMANDS.format('Usage: python run.py COMMAND')
 FALSE_CMD = AVAILABLE_COMMANDS.format('"{}" is not an available command')
@@ -43,6 +45,10 @@ def run():
                 print(FALSE_CMD.format('test2 ' + sys.argv[2]))
         elif sys.argv[1] == 'test3':
             training_duration.run_test()
+        elif sys.argv[1] == 'make_pdf':
+            make_pdf_articulo_resumen()
+            make_pdf_libro()
+            make_pdf_propuesta()
         elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
             print(USAGE)
         else:

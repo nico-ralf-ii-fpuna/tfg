@@ -1,0 +1,151 @@
+% ==============================
+% Ejemplo de documento para el trabajo de grado de la Facultad Politecnica de la UNA
+% Esta basado en una plantilla de la Universidad de Cambrigde.
+% ==============================
+
+\documentclass[oneside,12pt]{thesis}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[ruled, linesnumbered, noline]{algorithm2e}
+\usepackage[
+    group-digits=integer,
+    group-minimum-digits=4,
+    input-decimal-markers={.},
+    output-decimal-marker={,}]{siunitx}
+\usepackage{mymacros}
+\newcommand{\newCommandChapterTitle}{---}
+
+\usepackage[
+    a4paper,
+    left=2.5cm,
+    top=2.5cm,
+    footskip=1cm,
+    total={17cm,252mm},
+    includehead,
+    includefoot]{geometry}
+\linespread{1.25}       % this should equal 1.5 linespacing
+\fancyheadoffset{0cm}   % headrule across whole text area
+
+\usepackage{booktabs}   % to use specialrule
+\usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}    % centered flexible tabularX column
+\renewcommand{\spanishtablename}{Tabla}
+
+\usepackage{url}
+\renewcommand{\UrlFont}{\ttfamily\small}
+\urldef{\TheRepoUrl}\url{https://github.com/nico-ralf-ii-fpuna/tfg}
+
+
+% Definicion de glosarios para simbolos y acronimos
+\usepackage{datatool}
+\usepackage[nomain,nonumberlist,toc]{glossaries}
+\setglossarystyle{altlong4col}
+\newglossary[sim1]{sim2}{sim3}{sim4}{Lista de Símbolos}
+\newglossary[acr1]{acr2}{acr3}{acr4}{Lista de Acrónimos}
+\makeglossaries
+\input{p0_symbols}
+\input{p0_acronyms}
+
+\bibliographystyle{apalike}
+
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            \textsc{\LARGE Universidad Nacional De Asunción}        \\[1cm]
+            \textsc{\LARGE Facultad Politécnica}                    \\[1cm]
+            \textsc{\LARGE Ingeniería en Informática}               \\[1.5cm]
+            \includegraphics[width=20mm]{images/Escudo_FPUNA.jpg}   \\[1cm]
+
+            \HRule                                                  \\[0.5cm]
+            {\bfseries \large
+                Trabajo Final de Grado
+            }                                                       \\[0.5cm]
+            {\bfseries \large
+                \gls{acr3:name}:
+                un Web Application Firewall basado en anomalías
+                con clasificadores \gls{acr3:ocsvm}
+            }                                                       \\[0.5cm]
+            \HRule                                                  \\[1.5cm]
+
+            \begin{minipage}[t]{0.4\textwidth}
+                \begin{flushleft}
+                    \large
+                    \emph{Autores:}                                 \\[0.2cm]
+                    Nico Epp                                        \\[0.2cm]
+                    Ralf Funk
+                \end{flushleft}
+            \end{minipage}
+            \begin{minipage}[t]{0.4\textwidth}
+                \begin{flushright}
+                    \large
+                    \emph{Tutor:}                                   \\[0.2cm]
+                    Prof. Cristian Cappo
+                \end{flushright}
+            \end{minipage}
+
+            \vfill
+
+            \textsc{\large San Lorenzo - Paraguay} \\
+            \textsc{\large Noviembre - 2017}
+        \end{center}
+    \end{titlepage}
+
+    \blankpage
+
+    % set the number of sectioning levels that get number and appear in the contents
+    \setcounter{secnumdepth}{3}
+    \setcounter{tocdepth}{3}
+    \pagenumbering{roman}
+
+    \include{p1_dedicatoria}
+    \include{p1_agradecimiento}
+    \include{p1_resumen}
+    \include{p1_abstract}
+
+    \renewcommand{\contentsname}{Contenido}
+    \tableofcontents
+
+    \renewcommand{\listfigurename}{Lista de Figuras}
+    \renewcommand{\figurename}{Figura}
+    \listoffigures
+
+    \newpage
+    \setlength{\glsdescwidth}{0.8\linewidth}
+    \setlength{\glspagelistwidth}{0cm}
+    \printglossary[type=sim2]
+
+    \newpage
+    \setlength{\glsdescwidth}{0.6\linewidth}
+    \setlength{\glspagelistwidth}{0cm}
+    \printglossary[type=acr2]
+
+    \newpage
+    \renewcommand{\listtablename}{Lista de Tablas}
+    \renewcommand{\tablename}{Tabla}
+    \listoftables
+
+    % \SetAlgorithmName{Algoritmo}{Alg}{Lista de Algoritmos}
+    % \customlistofalgorithms
+
+    \mainmatter     % starts chapter numbering
+    \renewcommand{\chaptername}{Capítulo}
+    \include{p3_introduction}
+    \include{p3_concepts_features}
+    \include{p3_concepts_ocsvm}
+    \include{p3_new_waf}
+    \include{p3_results}
+    \include{p3_conclusions}
+
+    % \appendix       % changes chapter numbering to letters
+    % \renewcommand{\appendixname}{Apéndice}
+    % \include{p4_appendix_A}
+    % \include{p4_appendix_B}
+
+    \backmatter     % stops chapter numbering
+    \renewcommand{\bibname}{Referencias}
+    \bibliography{p5_references}
+\end{document}

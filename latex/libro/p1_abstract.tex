@@ -1,0 +1,38 @@
+\begin{abstracts}
+    Vulnerabilities in web applications pose a great risk because they
+    can be exploited by malicious attackers through the Internet. Web
+    Application Firewalls (\gls{acr3:waf}) can be placed in front of
+    these applications to detect possible attacks, thus reducing the
+    impact of these risks.
+    In this work, we present \gls{acr3:name}, a \gls{acr3:waf} that can
+    be placed in front of web applications to analyze the incoming
+    \gls{acr3:http} messages, in order to detect anomalous messages that
+    could contain attacks.
+    Our implementation, made with the \textit{Python} programming language,
+    uses \gls{acr3:ocsvm} classifier for the detection, coupled with custom
+    \gls{acr3:http}-specific feature extraction processes.
+    \gls{acr3:name} is trained with messages that represent the normal
+    behavior of the protected applications, and later, during the detection
+    phase, it can detect anomalous messages or attacks.
+    With anomaly detection strategy, \gls{acr3:name} only needs to be
+    retrained when there are changes in the protected applications, but
+    the discovery of new attacks does not require this retraining.
+    Our detection efficacy tests show that \gls{acr3:name} reaches an
+    average \gls{acr3:tpr} of \num{0.93}, an average \gls{acr3:fpr} of
+    \num{0.03} and an average F$_{1}$-\textit{score} of \num{0.95} for
+    the public data sets that we used.
+    The tests that we applied also show that the detection process of
+    \gls{acr3:name} should not have a noticeable effect on the response
+    time of the protected applications. Besides, it can be trained with
+    \num{100000} normal messages in only a few minutes.
+    Finally, the source code of \gls{acr3:name} is available in our
+    public repository under \TheRepoUrl, so that others may reproduce
+    our results and extend our work with further research.
+
+    \keywordsENG{
+        Intrusion Detection System (\gls{acr3:ids}),
+        Web Application Firewall (\gls{acr3:waf}),
+        web attacks,
+        Anomaly Detection,
+        \gls{acr3:ocsvm}}
+\end{abstracts}

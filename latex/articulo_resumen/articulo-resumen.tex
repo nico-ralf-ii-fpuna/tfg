@@ -1,0 +1,116 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\newcolumntype{C}{>{\centering\arraybackslash}X}    % centered flexible tabularX column
+\renewcommand{\spanishtablename}{Tabla}
+\usepackage[
+    group-digits=integer,
+    group-minimum-digits=4,
+    input-decimal-markers={.},
+    output-decimal-marker={,}]{siunitx}
+\def\BibTeX{
+    {\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}
+}
+
+\usepackage{url}
+\renewcommand{\UrlFont}{\ttfamily\small}
+\urldef{\TheRepoUrl}\path{https://github.com/nico-ralf-ii-fpuna/tfg}
+
+% Definicion de glosarios para simbolos y acronimos
+\usepackage{datatool}
+\usepackage[nomain,nonumberlist,toc]{glossaries}
+\setglossarystyle{altlong4col}
+\newglossary[sim1]{sim2}{sim3}{sim4}{Lista de Símbolos}
+\newglossary[acr1]{acr2}{acr3}{acr4}{Lista de Acrónimos}
+\makeglossaries
+\input{p0_symbols}
+\input{p0_acronyms}
+
+
+\begin{document}
+    \title{
+        \gls{acr3:name}:
+        un Web Application Firewall basado en anomalías
+        con clasificadores \gls{acr3:ocsvm}
+    }
+
+    \author{
+        \IEEEauthorblockN{Nico Epp}
+        \IEEEauthorblockA{
+            \textit{Facultad Politécnica}\\
+            \textit{Universidad Nacional de Asunción}\\
+            San Lorenzo, Paraguay\\
+            nicoeppfriesen@gmail.com
+        }
+        \and
+        \IEEEauthorblockN{Ralf Funk}
+        \IEEEauthorblockA{
+            \textit{Facultad Politécnica}\\
+            \textit{Universidad Nacional de Asunción}\\
+            San Lorenzo, Paraguay\\
+            ralffunk0@gmail.com
+        }
+    }
+
+    \maketitle
+
+    \begin{abstract}
+        Las vulnerabilidades en aplicaciones web presentan un gran riesgo, ya
+        que estas pueden ser explotadas por atacantes maliciosos a través
+        de Internet. Los \textit{Web Application Firewalls} (\gls{acr3:waf})
+        pueden ser colocados frente a estas aplicaciones para detectar
+        posibles ataques y de esta forma reducir estos riesgos.
+        En este trabajo presentamos \gls{acr3:name}, un \gls{acr3:waf} que
+        puede ser colocado frente a aplicaciones web para analizar los mensajes
+        \gls{acr3:http} entrantes, con el fin de detectar mensajes anómalos
+        que podrían contener ataques.
+        Nuestra implementación, hecha en el lenguage de programación
+        \textit{Python}, utiliza clasificadores \gls{acr3:ocsvm} para la
+        detección, junto con procesos de extracción de características
+        diseñados específicamente para mensajes \gls{acr3:http}.
+        \gls{acr3:name} es entrenado con mensajes que representan el uso
+        normal de las aplicaciones protegidas, y posteriormente, en la fase
+        de detección, puede detectar mensajes anómalos o ataques.
+        Usando esta estrategia de detección de anomalías, \gls{acr3:name}
+        solamente necesita ser entrenado cuando haya cambios en las
+        aplicaciones protegidas, por lo que la aparición de nuevos tipos de
+        ataques no requiere volver a entrenarlo.
+        Las pruebas realizadas para medir la eficacia de detección muestran
+        que \gls{acr3:name} alcanza un \gls{acr3:tpr} promedio de \num{0.93},
+        un \gls{acr3:fpr} promedio de \num{0.03} y un F$_{1}$-\textit{score}
+        promedio de \num{0.95} para los conjuntos de datos públicos que
+        utilizamos.
+        Las pruebas también evidencian que las tareas de detección de \gls{acr3:name}
+        no afectarían de forma notable el tiempo de respuesta de las aplicaciones
+        protegidas. Además, puede ser entrenado con \num{100000} mensajes
+        normales en unos pocos minutos.
+        Finalmente, el código fuente de \gls{acr3:name} está disponible en
+        un repositorio público bajo la dirección \TheRepoUrl, con la finalidad
+        de que otros puedan reproducir nuestros resultados y extender este
+        trabajo en futuras investigaciones.
+    \end{abstract}
+
+    \begin{IEEEkeywords}
+        Sistemas de Detección de Intrusión (\gls{acr3:ids}),
+        Web Application Firewall (\gls{acr3:waf}),
+        ataques web,
+        detección de anomalías,
+        \gls{acr3:ocsvm}
+    \end{IEEEkeywords}
+
+    % the command '\include' adds pagebreaks, so we use '\input' instead
+    \input{p3_contenido}
+
+    \bibliography{p5_references}
+    \bibliographystyle{IEEEtran}
+\end{document}

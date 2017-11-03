@@ -1,0 +1,20 @@
+\ProvidesPackage{mymacros}
+
+\newcommand{\HRule}{
+    \protect
+    \rule{\linewidth}{0.3mm}
+}
+\newcommand{\blankpage}{
+    \thispagestyle{empty}
+    \null
+    \newpage
+}
+\newcommand{\keywordsENG}[1]{
+    \textbf{Keywords:} #1
+}
+\newcommand{\keywordsESP}[1]{
+    \textbf{Palabras clave:} #1
+}
+\newcommand{\customlistofalgorithms}{
+    \tocfile{\listalgorithmcfname}{loa}
+}
