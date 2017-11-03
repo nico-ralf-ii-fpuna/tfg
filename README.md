@@ -1,42 +1,53 @@
 # Trabajo Final de Grado (undergraduate thesis)
 
-_Source code for OCS-WAF: a Web Application Firewall based on anomaly detection using One-Class SVM classifier._
+   _Source code for OCS-WAF: a Web Application Firewall based
+   on anomaly detection using One-Class SVM classifier._
 
-## Getting Started
+## Running tests
 
-Tested with Python 3.5 on Ubuntu 14.04 and Windows 7
+   Tested with Python 3.5 on Ubuntu 14.04 and Windows 7
 
 #### Install dependencies
-```bash
-cd tfg
-pip install -r requirements.txt
-```
-_If there are problems on Windows with some packages, [Anaconda](https://www.continuum.io/downloads) 
-can be used to install them_.
-_In Ubuntu using `pip` should just work fine_.
+   ```bash
+   cd tfg
+   pip install -r requirements.txt
+   ```
+   _If there are problems on Windows with some packages,
+   [Anaconda](https://www.continuum.io/downloads) can be
+   used to install them_.
+   _In Ubuntu using `pip` should work just fine_.
 
 #### Download necessary data sets
-- Paste files from [CSIC 2010 HTTP data sets](http://www.isi.csic.es/dataset/) into `/tfg/implementation/data_sets/csic/original_files/`
-- Paste files from [CSIC Torpeda 2012 HTTP data sets](http://www.tic.itefi.csic.es/torpeda/datasets.html) into `/tfg/implementation/data_sets/torpeda/original_files/`
+   - Paste files from [CSIC 2010 HTTP data sets](http://www.isi.csic.es/dataset/)
+   into `/tfg/implementation/data_sets/csic/original_files/`
+   - Paste files from [CSIC Torpeda 2012 HTTP data sets](http://www.tic.itefi.csic.es/torpeda/datasets.html)
+   into `/tfg/implementation/data_sets/torpeda/original_files/`
 
 #### Run the tests
-   Use the `run.py` file to run the different tests.
-   For example, `python3 run.py test1`. To see which tests are available, run the file 
-   without additional commands or parameters, like this `python3 run.py`.
-   For `test2` you have to start all four tests beginning with `test2` in their listed order,
-   starting with the destination and concluding with source, waiting some seconds between the
-   executions to give them some time to initialize.
+   Use the script `run.py` to run the different tests; executing
+   it without additional parameters displays the usage info,
+   like this `python3 run.py`.
+   
+   For `test2` you have to start all four options of that test in
+   their listed order, starting with the destination and concluding
+   with source, waiting some seconds in between to give them some
+   time to initialize.
 
-## Latex source code
-   The folder `/tfg/latex` contains the latex source code of our undergraduate thesis.
-   It includes a script to compile the code and generate a PDF file, using the utilities `pdflatex`, `makeglossaries` and `bibtex`.
+## Compiling Latex files
+   Use the script `run.py` to compile the latex source files and
+   generate a PDF of our undergraduate thesis; executing it without
+   additional parameters displays the usage info, like this
+   `python3 run.py`.
+   
+   For the compilation process, the utilities `pdflatex`, `makeglossaries`
+   and `bibtex` need to be installed.
 
 ## Authors
-- Nico Epp
-- Ralf Funk
-- Cristian Cappo (undergraduate thesis advisor)
+   - Nico Epp
+   - Ralf Funk
+   - Cristian Cappo (undergraduate thesis advisor)
 
 ## See also
    Check out the [paper](https://www.researchgate.net/publication/319490376_Anomaly-based_Web_Application_Firewall_using_HTTP-specific_features_and_One-Class_SVM)
-   we submitted to the ERRC 2017 conference in Santa Maria, Brazil
-   and the corresponding [code](https://github.com/nico-ralf-ii-fpuna/paper).
+   we submitted to the ERRC 2017 conference in Santa Maria, Brazil and
+   the corresponding [source code](https://github.com/nico-ralf-ii-fpuna/paper).
