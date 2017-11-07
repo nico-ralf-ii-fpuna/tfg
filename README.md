@@ -35,12 +35,14 @@
 
 ## Compiling Latex files
    Use the script `run.py` to compile the latex source files and
-   generate a PDF of our undergraduate thesis; executing it without
-   additional parameters displays the usage info, like this
-   `python3 run.py`.
+   generate a PDF of our undergraduate thesis (proposal, complete
+   book and summary article); executing it without additional parameters
+   displays the usage info, like this `python3 run.py`.
    
    For the compilation process, the utilities `pdflatex`, `makeglossaries`
    and `bibtex` need to be installed.
+   
+   The compiled PDFs are also available in the folder `/tfg/pdfs/`.
 
 ## Authors
    - Nico Epp
