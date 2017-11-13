@@ -36,8 +36,9 @@
 ## Compiling Latex files
    Use the script `run.py` to compile the latex source files and
    generate a PDF of our undergraduate thesis (proposal, complete
-   book and summary article); executing it without additional parameters
-   displays the usage info, like this `python3 run.py`.
+   book and summary article, all written in spanish);
+   executing it without additional parameters displays the usage
+   info, like this `python3 run.py`.
    
    For the compilation process, the utilities `pdflatex`, `makeglossaries`
    and `bibtex` need to be installed.
@@ -51,5 +52,5 @@
 
 ## See also
    Check out the [paper](https://www.researchgate.net/publication/319490376_Anomaly-based_Web_Application_Firewall_using_HTTP-specific_features_and_One-Class_SVM)
-   we submitted to the ERRC 2017 conference in Santa Maria, Brazil and
-   the corresponding [source code](https://github.com/nico-ralf-ii-fpuna/paper).
+   (written in english) we submitted to the ERRC 2017 conference in Santa Maria, Brazil
+   and the corresponding [source code](https://github.com/nico-ralf-ii-fpuna/paper).
