@@ -100,3 +100,17 @@ def make_pdf_propuesta():
             'spanish.dtx',
             'thesis.cls',
         ])
+
+
+def make_pdf_defensa_tecnica():
+    t_start = time.perf_counter()
+
+    dir_name = os.path.join('latex', 'defensa_tecnica')
+    main_filename = 'slides-defensa-tecnica'
+
+    _make_pdf(dir_name, main_filename)
+    _make_pdf(dir_name, main_filename)
+
+    t_end = time.perf_counter()
+    print()
+    print('TOTAL DURATION: {:4.2f} seconds'.format(t_end - t_start))
