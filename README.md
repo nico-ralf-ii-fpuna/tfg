@@ -35,8 +35,8 @@
 
 ## Compiling Latex files
    Use the script `run.py` to compile the latex source files and
-   generate a PDF of our undergraduate thesis (proposal, complete
-   book and summary article, all written in spanish);
+   generate a PDF of our undergraduate thesis (proposal, complete book,
+   summary article and presentation slides, all written in spanish);
    executing it without additional parameters displays the usage
    info, like this `python3 run.py`.
    
