@@ -1,0 +1,163 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usetheme[compress]{Dresden}
+\setbeamertemplate{navigation symbols}{}    % remove navigation symbols from footer
+\renewcommand\mathfamilydefault{\rmdefault} % set normal math fonts, there is a different default
+
+% very "hacky" addition of page number to Dresden theme
+\setbeamertemplate{footline}%{miniframes theme}
+{%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+        \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
+        \hfill%
+        {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+        {\usebeamerfont{title in head/foot}\insertshorttitle} \hfill     \insertframenumber%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+}
+
+% very "hacky" change of footnote size
+\setbeamertemplate{footnote}{%
+  \tiny%
+  \parindent 1em\noindent%
+  \raggedright
+  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}%
+\setlength\footnotesep{0pt}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage[titlenumbered, linesnumbered, nofillcomment, ruled, english]{algorithm2e}
+\usepackage[
+    group-digits=integer,
+    group-minimum-digits=4,
+    input-decimal-markers={.},
+    output-decimal-marker={,}]{siunitx}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+
+\usepackage{booktabs}   % to use specialrule
+\usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}    % centered flexible tabularX column
+\usepackage{url}
+\renewcommand{\UrlFont}{\ttfamily\small}
+\urldef{\TheRepoUrl}\url{https://github.com/nico-ralf-ii-fpuna/tfg}
+
+% custom counter to continue item enumeration on next slide
+% apparently, "enumi" is the default counter name used by latex
+\newcounter{mynewenumi}
+\newcommand{\savemynewenumi}{\setcounter{mynewenumi}{\value{enumi}}}
+\newcommand{\contmynewenumi}{\setcounter{enumi}{\value{mynewenumi}}}
+\resetcounteronoverlays{mynewenumi}
+
+
+% ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====
+% definition of first slide
+% ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====
+
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\tiny}
+
+\title[OCS-WAF]                  % optional short title in brackets
+{
+    OCS-WAF:\\
+    un Web Application Firewall basado en anomalías
+    con clasificadores One-Class SVM
+}
+\author[Nico Epp y Ralf Funk]   % optional short author list in brackets
+{
+    Nico Epp
+    \and
+    Ralf Funk
+}
+\institute[FP-UNA]              % optional acronym in brackets
+{
+    \begin{tabular}{c}
+        \includegraphics[height=1.5cm]{images/Escudo_FPUNA.jpg} \\
+        Universidad Nacional de Asunción                        \\
+        Facultad Politécnica                                    \\
+        Ingeniería en Informática                               \\
+        \\
+        Defensa Pública de Trabajo Final de Grado
+    \end{tabular}
+}
+\date[Noviembre 2017]           % optional short name and date in brackets
+{
+    \begin{tabular}{c}
+        San Lorenzo, Paraguay \\
+        20 de Noviembre 2017
+    \end{tabular}
+}
+
+% ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====
+% end of first slide
+% ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====
+
+
+\AtBeginSection[]
+{
+    \begin{frame}[shrink]
+        \frametitle{Contenido}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+
+\begin{document}
+    \begin{frame}[plain]    % no header and no footer
+        \titlepage
+    \end{frame}
+
+    \begin{frame}[shrink]
+        \frametitle{Contenido}
+        \tableofcontents
+    \end{frame}
+
+    \include{p_introduction}
+    \include{p_new_waf}
+    \include{p_results}
+    \include{p_conclusions}
+
+
+
+    \section*{}     % the rest of the slides are not part of the outline
+
+    \begin{frame}
+        \begin{center}
+            \LARGE
+            Gracias por su atención!
+        \end{center}
+
+        \vfill
+
+        \begin{center}
+            \small
+            \begin{tabular}{c}
+                \includegraphics[height=0.5cm]{images/logo-github.jpg} \\
+                \TheRepoUrl \\
+            \end{tabular}
+        \end{center}
+    \end{frame}
+
+    \include{p_anexos}
+
+    \begin{frame}
+        \begin{center}
+            \small
+            \begin{tabular}{c}
+                \includegraphics[height=0.5cm]{images/logo-github.jpg} \\
+                \TheRepoUrl \\
+            \end{tabular}
+        \end{center}
+    \end{frame}
+\end{document}

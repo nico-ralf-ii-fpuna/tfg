@@ -9,7 +9,7 @@ import os
 import sys
 from implementation.tests import detection_efficacy, training_duration, waf_speed
 from latex import make_pdf_articulo_resumen, make_pdf_libro, make_pdf_propuesta
-from latex import make_pdf_defensa_tecnica
+from latex import make_pdf_defensa_tecnica, make_pdf_defensa_publica
 
 
 AVAILABLE_COMMANDS = '''{}
@@ -51,6 +51,7 @@ def run():
             make_pdf_libro()
             make_pdf_propuesta()
             make_pdf_defensa_tecnica()
+            make_pdf_defensa_publica()
         elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
             print(USAGE)
         else:

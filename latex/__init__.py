@@ -114,3 +114,17 @@ def make_pdf_defensa_tecnica():
     t_end = time.perf_counter()
     print()
     print('TOTAL DURATION: {:4.2f} seconds'.format(t_end - t_start))
+
+
+def make_pdf_defensa_publica():
+    t_start = time.perf_counter()
+
+    dir_name = os.path.join('latex', 'defensa_publica')
+    main_filename = 'slides-defensa-publica'
+
+    _make_pdf(dir_name, main_filename)
+    _make_pdf(dir_name, main_filename)
+
+    t_end = time.perf_counter()
+    print()
+    print('TOTAL DURATION: {:4.2f} seconds'.format(t_end - t_start))
